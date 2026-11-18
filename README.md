@@ -8,11 +8,9 @@
 
 ![Version 2.0.7](https://img.shields.io/badge/version-2.0.7-16235c?style=for-the-badge) ![Python 3.14](https://img.shields.io/badge/python-3.14-2f6fd0?style=for-the-badge&logo=python&logoColor=white) ![NiceGUI 3.18](https://img.shields.io/badge/NiceGUI-3.18-1f8a70?style=for-the-badge) ![uv](https://img.shields.io/badge/uv-packaged-b45309?style=for-the-badge)
 
-<!-- Promo video: add when the Dropbox link exists
-<a href="VIDEO_LINK_TODO"><img src="docs/video/video_thumbnail_play.png" alt="Play the IPC Uploader promo video" width="840"></a>
+<a href="https://www.dropbox.com/scl/fi/v4yls8bheph5sxt0uvp50/IPC-Uploader-Promo-v2.0.7-rev-4.mp4?rlkey=3vl1jje04hyqpxztegl0n7pxy&raw=1"><img src="docs/video/video_thumbnail_play.png" alt="Play the IPC Uploader promo video" width="840"></a>
 
 <sub>A 48-second promo: one upload from form to finished check, and the queue dashboard on the office screen. Click the image to play.<br>Music: <i>Upbeat Energetic Corporate</i> by Fretbound (<a href="https://hypeddit.com/v8zrnu">download</a>).</sub>
--->
 
 <sub>This is a showcase repository. It describes the app; the source code stays private. Every engineer, project and file name in the screenshots is invented.</sub>
 
