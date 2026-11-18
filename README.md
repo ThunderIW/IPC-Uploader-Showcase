@@ -1,12 +1,20 @@
 <div align="center">
 
+<img src="Media/Logos/Wiecon_logo-removebg-preview.png" alt="Wiecon logo" width="160">
+
 # IPC Uploader
 
 **One form that sends calculation reports to Wiecon's hourly AI proof-check agent, and brings the finished checks back.**
 
 ![Version 2.0.7](https://img.shields.io/badge/version-2.0.7-16235c?style=for-the-badge) ![Python 3.14](https://img.shields.io/badge/python-3.14-2f6fd0?style=for-the-badge&logo=python&logoColor=white) ![NiceGUI 3.18](https://img.shields.io/badge/NiceGUI-3.18-1f8a70?style=for-the-badge) ![uv](https://img.shields.io/badge/uv-packaged-b45309?style=for-the-badge)
 
-<sub>This is a showcase repository. It describes the app; the source code stays private.</sub>
+<!-- Promo video: add when the Dropbox link exists
+<a href="VIDEO_LINK_TODO"><img src="docs/video/video_thumbnail_play.png" alt="Play the IPC Uploader promo video" width="840"></a>
+
+<sub>A 48-second promo: one upload from form to finished check, and the queue dashboard on the office screen. Click the image to play.<br>Music: <i>Upbeat Energetic Corporate</i> by Fretbound (<a href="https://hypeddit.com/v8zrnu">download</a>).</sub>
+-->
+
+<sub>This is a showcase repository. It describes the app; the source code stays private. Every engineer, project and file name in the screenshots is invented.</sub>
 
 </div>
 
@@ -40,6 +48,8 @@ Wiecon runs an AI agent every hour that works through a queue of calculation rep
 
 The IPC Uploader turns that into a single form. The engineer fills it in, clicks **Upload**, and the package lands in the right place in the right shape. When the check is done, the result shows up in the same app.
 
+<!-- TODO before/after: how long assembling and filing one check took by hand vs with the app, and how many checks have gone through since 28 October 2026. Real figures only. -->
+
 ```mermaid
 flowchart LR
     A[Engineer] --> B[IPC Uploader<br/>on the engineer's PC]
@@ -51,7 +61,15 @@ flowchart LR
 
 ---
 
-## 02. Features
+## 02. Testimonials
+
+![From the engineers using it](https://img.shields.io/badge/from-the_engineers_using_it-16235c?style=flat-square)
+
+<!-- TODO: a short quote from an engineer who uses the app, with their name and role, used with their permission. -->
+
+---
+
+## 03. Features
 
 **1.** ![One form, one upload](https://img.shields.io/badge/One_form,_one_upload-b45309?style=flat-square)
 Engineer name, project name, design code (for example IRC) and code documents, report PDFs and optional supporting documents, all on one page. Codes you use often can be saved as a **preset** and loaded in one click.
@@ -74,9 +92,76 @@ Uploads and downloads go over FTP, so the app works from offices where the serve
 **7.** ![Double-click to start](https://img.shields.io/badge/Double--click_to_start-b45309?style=flat-square)
 Engineers start it with one `.bat` file. On first use it sets up uv, then starts the app on the local machine with no console window and opens it in the browser. Closing the tab stops it. The desktop icon shows the installed version.
 
+**8.** ![Queue dashboard](https://img.shields.io/badge/Queue_dashboard-b45309?style=flat-square)
+A separate **IPC Check Queue** page runs on its own computer as an office screen, so the whole team can see who is waiting, whose report is being checked and what has finished. See [05. Queue dashboard](#05-queue-dashboard).
+
 ---
 
-## 03. Architecture
+## 04. Screenshots
+
+![The app at work](https://img.shields.io/badge/the_app_at_work-16235c?style=flat-square)
+
+**The upload form, filled in.** Engineer, project and design code at the top, the report PDFs and supporting documents below, one **Upload** button.
+
+<div align="center">
+<img src="docs/screenshots/01_upload_form.jpg" alt="The upload form with an engineer, project, design code, two reports and a drawing filled in" width="760">
+</div>
+
+**The Uploads list.** Everything you've sent that is still being checked. An upload leaves the list once its result is in the Outbox.
+
+<div align="center">
+<img src="docs/screenshots/02_uploads_list.jpg" alt="The Uploads menu listing four uploads still being checked" width="760">
+</div>
+
+**The Outbox pill.** Point at it to see the finished checks, each with a download button.
+
+<div align="center">
+<img src="docs/screenshots/03_outbox_downloads.jpg" alt="The Outbox pill open, listing three finished checks with download buttons" width="760">
+</div>
+
+---
+
+## 05. Queue dashboard
+
+![On the office screen](https://img.shields.io/badge/on_the_office_screen-16235c?style=flat-square) ![Live from the API](https://img.shields.io/badge/live_from-the_IPC_Uploader_API-009688?style=flat-square)
+
+The **IPC Check Queue** is a separate page that runs on its own computer, on a screen in the office, so every engineer can see the line at a glance. It doesn't need the uploader: it reads the list of uploads from the IPC Uploader's FastAPI back end every few seconds and turns it into a small bridge-site scene. Each upload is a stick figure named after its engineer.
+
+<div align="center">
+<img src="docs/screenshots/04_dashboard_waiting.jpg" alt="The IPC Check Queue: three engineers waiting on the bridge, Sam Lee's report at the checker, and the In line and Checked lists below" width="840">
+</div>
+
+The page follows the uploads through these states:
+
+| State | What the screen shows |
+| :--- | :--- |
+| **Waiting in line** | Engineers stand on the bridge deck in upload order, numbered from the front. Their waiting time counts up, and they get bored: checking phones, yawning, *"Are we there yet?"* |
+| **New upload** | A new figure walks in from the left and joins the back of the line. |
+| **Check starts** | When the checker is free, the one at the front runs to the **GOAL** flag, rides the lift down to the drafting table, and everyone behind moves up a place. |
+| **Being checked** | The checker's monitor works through the report section by section (*§ 1/7 Loads*, *§ 2/7 Bending*) and the printer prints the checked pages. |
+| **Check done** | When the result is in the Outbox, the monitor says **CHECKED ✓**, the engineer walks off with the bundle of checked calculations and moves to the **Checked** list. |
+| **Nobody waiting** | *No one in line, waiting for new uploads.* The monitor reads **READY** and the check engineer dozes off. |
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center"><img src="docs/screenshots/05_dashboard_new_upload.jpg" alt="Priya Singh walking in across the bridge to join the line" width="410"><br><sub><b>New upload</b>: Priya walks in and joins the line.</sub></td>
+<td align="center"><img src="docs/screenshots/06_dashboard_check_done.jpg" alt="The monitor reads CHECKED, Sam Lee leaves the desk and Maya Patel runs to the flag" width="410"><br><sub><b>Check done</b>: Sam leaves, Maya runs to the flag.</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="docs/screenshots/07_dashboard_next_check.jpg" alt="Maya Patel at the checker's desk, the monitor processing her report" width="410"><br><sub><b>Next check</b>: Maya's report is being checked.</sub></td>
+<td align="center"><img src="docs/screenshots/08_dashboard_empty.jpg" alt="The empty queue: no one in line, the monitor reads READY" width="410"><br><sub><b>Nobody waiting</b>: the checker is ready.</sub></td>
+</tr>
+</table>
+
+</div>
+
+A real upload leaves the line when its result is in the Outbox, not after a set time. The page's Settings set how often it asks the server, and can add test names to try the animation.
+
+---
+
+## 06. Architecture
 
 ![NiceGUI](https://img.shields.io/badge/NiceGUI-front_end-1f8a70?style=flat-square) ![FastAPI](https://img.shields.io/badge/FastAPI-back_end-009688?style=flat-square) ![SQLModel](https://img.shields.io/badge/SQLModel-database-b45309?style=flat-square) ![fsspec](https://img.shields.io/badge/fsspec-FTP-2f6fd0?style=flat-square)
 
@@ -84,13 +169,15 @@ Engineers start it with one `.bat` file. On first use it sets up uv, then starts
 | :--- | :--- |
 | **Front end** | A NiceGUI page in pure Python: the upload form, presets, the Uploads list and the Outbox pill. |
 | **File layer** | Finds the data root, lists the design codes, counts the Outbox, and zips each submission into the right Inbox folder over FTP (fsspec and universal-pathlib). |
-| **Back end** | A FastAPI service with a SQLModel database that records uploads and presets and serves a queue dashboard. |
+| **Back end** | A FastAPI service with a SQLModel database that records uploads and presets. |
+| **Queue dashboard** | One self-contained HTML page served by the back end and shown on an office screen; it polls the uploads list and animates the queue. |
 | **Release** | A PowerShell script builds a versioned release zip with the launcher, settings and release notes. Server login details ship with the release, never in the repository. |
 | **Video guide** | A short motion-graphics guide that walks engineers through each step of an upload. |
+| **Promo video** | A 48-second promo built with HyperFrames from screens of the app and the dashboard on invented data. |
 
 ---
 
-## 04. Example workflow
+## 07. Example workflow
 
 ![Submitting a report for checking](https://img.shields.io/badge/submitting_a_report_for_checking-16235c?style=flat-square)
 
@@ -102,7 +189,7 @@ Engineers start it with one `.bat` file. On first use it sets up uv, then starts
 
 ---
 
-## 05. What it doesn't do
+## 08. What it doesn't do
 
 | Not included | Status |
 | :--- | :--- |
@@ -112,7 +199,7 @@ Engineers start it with one `.bat` file. On first use it sets up uv, then starts
 
 ---
 
-## 06. Changelog
+## 09. Changelog
 
 ![Latest 2.0.7](https://img.shields.io/badge/latest-2.0.7-16235c?style=flat-square) ![26 releases](https://img.shields.io/badge/releases-26-64748b?style=flat-square) ![First release](https://img.shields.io/badge/first_release-2026--10--28-64748b?style=flat-square)
 
@@ -133,7 +220,7 @@ The main milestones, newest first.
 
 ---
 
-## 07. Copyright
+## 10. Copyright
 
 > [!IMPORTANT]
 > **Proprietary and confidential. This is not open-source software.**
