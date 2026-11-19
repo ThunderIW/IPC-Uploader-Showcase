@@ -196,6 +196,10 @@ A real upload leaves the line when its result is in the Outbox, not after a set 
 
 A NiceGUI front end on the engineer's PC, a file layer that talks to the IPC server over FTP, and a FastAPI back end with a SQLModel database that the queue dashboard reads, on Python 3.14.
 
+![An engineer's upload goes from the browser through IPC_uploader_frontend.py and code_finder.py into the IPC server's Inbox over FTP, with a record in presets.db and PostgreSQL; the finished check comes back from the Outbox for download, and the IPC Check Queue page reads the uploads from BackendAPI and PostgreSQL](docs/diagrams/architecture.svg)
+
+<sub>The app never calls the checker: it hands off through the Inbox and Outbox folders on the IPC server. The hourly AI proof check between them is a separate system and is not drawn.</sub>
+
 ### Front end
 
 ![NiceGUI · one page](https://img.shields.io/badge/NiceGUI%20%C2%B7%20one%20page-2f6fd0?style=flat-square)
