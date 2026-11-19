@@ -3,8 +3,6 @@
 
 <img src="docs/readme/hero.svg" width="100%" alt="IPC Uploader: one form that packages calculation reports for Wiecon's hourly AI proof check and brings the finished checks back. Beside it, the zip the agent receives and its path from the Inbox through the AI check to the Outbox.">
 
-![Version 3.0.0](https://img.shields.io/badge/version-3.0.0-16235c?style=for-the-badge) ![Python 3.14](https://img.shields.io/badge/python-3.14-2f6fd0?style=for-the-badge&logo=python&logoColor=white) ![NiceGUI 3.18](https://img.shields.io/badge/NiceGUI-3.18-1f8a70?style=for-the-badge) ![uv](https://img.shields.io/badge/uv-packaged-b45309?style=for-the-badge)
-
 <a href="https://youtu.be/4Phy4q6Dfmw"><img src="docs/video/video_thumbnail_play.png" alt="Play the IPC Uploader promo video" width="840"></a>
 
 <sub>A 48-second promo: one upload from form to finished check, and the queue dashboard on the office screen. Click the image to play.<br>Music: <i>Upbeat Energetic Corporate</i> by Fretbound (<a href="https://hypeddit.com/v8zrnu">download</a>).<br>Every engineer, project and file name in this README is invented.</sub>
