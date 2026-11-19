@@ -21,6 +21,8 @@ I'm **Immanuel Wiessler**, and I work in software and automation at Wiecon Consu
 - **The AI proof-check workflow.** I worked with the engineers to create it, and I was in charge of the agent's prompting and context design: what it reads, and how it is told to check a report against the codes.
 - **The IPC Uploader and the queue dashboard.** I designed, built and released both. The first version shipped on 28 October 2026, and it reached 3.0.0 three weeks later after 27 releases, each one shaped by what the engineers using it ran into.
 
+More of my work is on my GitHub profile: [**@ThunderIW**](https://github.com/ThunderIW).
+
 <div align="center">
 
 <table>
