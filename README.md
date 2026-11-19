@@ -88,7 +88,7 @@ The app checks that the zip arrived before it clears your files. If sending fail
 Uploads and downloads go over FTP, so the app works from offices where the server's shared folder can't be opened directly. PDFs up to 300 MB each are accepted.
 
 **7.** ![Double-click to start](https://img.shields.io/badge/Double--click_to_start-b45309?style=flat-square)
-Engineers start it with one `.bat` file. On first use it sets up uv, then starts the app on the local machine with no console window and opens it in the browser. Closing the tab stops it. The desktop icon shows the installed version.
+Engineers install it with one `Setup.exe` from the office share: no admin rights, an icon on the desktop and in the Start menu, and their settings and presets kept on updates. The icon sets up uv on first use, then starts the app on the local machine with no console window and opens it in the browser. Closing the tab stops it. The desktop icon shows the installed version.
 
 **8.** ![Queue dashboard](https://img.shields.io/badge/Queue_dashboard-b45309?style=flat-square)
 A separate **IPC Check Queue** page runs on its own computer as an office screen, so the whole team can see who is waiting, whose report is being checked and what has finished. See [05. Queue dashboard](#05-queue-dashboard).
@@ -179,7 +179,7 @@ A real upload leaves the line when its result is in the Outbox, not after a set 
 
 ![Submitting a report for checking](https://img.shields.io/badge/submitting_a_report_for_checking-16235c?style=flat-square)
 
-1. **Start the app.** Double-click `IPC Uploader.bat`; it opens in the browser.
+1. **Start the app.** Double-click the IPC Uploader icon on the desktop; it opens in the browser.
 2. **Fill in the form.** Engineer name, project name, design code and the code documents, or load a preset.
 3. **Add the files.** Drop in the report PDFs and, if there are any, the supporting documents (drawings, client specification).
 4. **Upload.** The app zips everything, sends it to the Inbox, confirms it arrived and opens the Uploads list.
