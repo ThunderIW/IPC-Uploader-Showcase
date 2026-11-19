@@ -6,9 +6,9 @@
 
 **One form that sends calculation reports to Wiecon's hourly AI proof-check agent, and brings the finished checks back.**
 
-![Version 2.0.7](https://img.shields.io/badge/version-2.0.7-16235c?style=for-the-badge) ![Python 3.14](https://img.shields.io/badge/python-3.14-2f6fd0?style=for-the-badge&logo=python&logoColor=white) ![NiceGUI 3.18](https://img.shields.io/badge/NiceGUI-3.18-1f8a70?style=for-the-badge) ![uv](https://img.shields.io/badge/uv-packaged-b45309?style=for-the-badge)
+![Version 3.0.0](https://img.shields.io/badge/version-3.0.0-16235c?style=for-the-badge) ![Python 3.14](https://img.shields.io/badge/python-3.14-2f6fd0?style=for-the-badge&logo=python&logoColor=white) ![NiceGUI 3.18](https://img.shields.io/badge/NiceGUI-3.18-1f8a70?style=for-the-badge) ![uv](https://img.shields.io/badge/uv-packaged-b45309?style=for-the-badge)
 
-<a href="https://www.dropbox.com/scl/fi/v4yls8bheph5sxt0uvp50/IPC-Uploader-Promo-v2.0.7-rev-4.mp4?rlkey=3vl1jje04hyqpxztegl0n7pxy&raw=1"><img src="docs/video/video_thumbnail_play.png" alt="Play the IPC Uploader promo video" width="840"></a>
+<a href="https://youtu.be/4Phy4q6Dfmw"><img src="docs/video/video_thumbnail_play.png" alt="Play the IPC Uploader promo video" width="840"></a>
 
 <sub>A 48-second promo: one upload from form to finished check, and the queue dashboard on the office screen. Click the image to play.<br>Music: <i>Upbeat Energetic Corporate</i> by Fretbound (<a href="https://hypeddit.com/v8zrnu">download</a>).</sub>
 
@@ -199,12 +199,13 @@ A real upload leaves the line when its result is in the Outbox, not after a set 
 
 ## 09. Changelog
 
-![Latest 2.0.7](https://img.shields.io/badge/latest-2.0.7-16235c?style=flat-square) ![26 releases](https://img.shields.io/badge/releases-26-64748b?style=flat-square) ![First release](https://img.shields.io/badge/first_release-2026--10--28-64748b?style=flat-square)
+![Latest 3.0.0](https://img.shields.io/badge/latest-3.0.0-16235c?style=flat-square) ![27 releases](https://img.shields.io/badge/releases-27-64748b?style=flat-square) ![First release](https://img.shields.io/badge/first_release-2026--10--28-64748b?style=flat-square)
 
 The main milestones, newest first.
 
 | Version | Released | Headline |
 | :--- | :--- | :--- |
+| **3.0.0** | 2026-11-19 | New Wiecon-blue look; files are kept and listed as you add them, and missing fields are marked |
 | **2.0.7** | 2026-11-16 | Uploads leave the list once their result is in the Outbox |
 | **2.0.5** | 2026-11-13 | New Uploads list in the top bar |
 | **2.0.3** | 2026-11-12 | PDFs up to 300 MB each |
