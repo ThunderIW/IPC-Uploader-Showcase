@@ -169,7 +169,7 @@ A real upload leaves the line when its result is in the Outbox, not after a set 
 | **File layer** | Finds the data root, lists the design codes, counts the Outbox, and zips each submission into the right Inbox folder over FTP (fsspec and universal-pathlib). |
 | **Back end** | A FastAPI service with a SQLModel database that records uploads and presets. |
 | **Queue dashboard** | One self-contained HTML page served by the back end and shown on an office screen; it polls the uploads list and animates the queue. |
-| **Release** | A PowerShell script builds a versioned release zip with the launcher, settings and release notes. Server login details ship with the release, never in the repository. |
+| **Release** | A PowerShell script builds each version with the launcher, settings and release notes, and an NSIS installer (`Setup.exe`) puts it on each engineer's PC: per user, no admin rights, with a desktop icon and an uninstaller. Server login details ship with the release, never in the repository. |
 | **Video guide** | A short motion-graphics guide that walks engineers through each step of an upload. |
 | **Promo video** | A 48-second promo built with HyperFrames from screens of the app and the dashboard on invented data. |
 
