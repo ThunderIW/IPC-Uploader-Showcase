@@ -351,22 +351,20 @@ Within the hour the agent writes its check to the Outbox. The pill in the header
 
 27 releases between 28 October and 19 November 2026, most of them answering something an engineer ran into the day before.
 
-| Version | Released | Headline | Your presets |
-| :--- | :--- | :--- | :--- |
-| **3.0.0** | 19 Nov 2026 | New Wiecon look; files are kept and listed as you add them | ![Keep them](https://img.shields.io/badge/kept-15803d?style=flat-square) |
-| **2.0.7** | 16 Nov 2026 | Uploads leave the list once their result is in the Outbox | ![Keep them](https://img.shields.io/badge/kept-15803d?style=flat-square) |
-| **2.0.6** | 13 Nov 2026 | The Uploads list opens by itself after an upload | ![Keep them](https://img.shields.io/badge/kept-15803d?style=flat-square) |
-| **2.0.5** | 13 Nov 2026 | New Uploads list in the top bar | ![Keep them](https://img.shields.io/badge/kept-15803d?style=flat-square) |
-| **2.0.3** | 12 Nov 2026 | PDFs up to 300 MB each | ![Keep them](https://img.shields.io/badge/kept-15803d?style=flat-square) |
-| **2.0.2** | 12 Nov 2026 | Project name on every submission, saved inside the zip | ![Keep them](https://img.shields.io/badge/kept-15803d?style=flat-square) |
-| **2.0.0** | 11 Nov 2026 | Reports can be sent without supporting documents; presets can be edited | ![Keep them](https://img.shields.io/badge/kept-15803d?style=flat-square) |
-| **1.10.2** | 10 Nov 2026 | Presets for frequently used codes | ![Keep them](https://img.shields.io/badge/kept-15803d?style=flat-square) |
-| **1.10.0 – 1.10.1** | 9 Nov 2026 | Uploads and downloads over FTP, so every office can use it | — |
-| **1.9.0** | 6 Nov 2026 | Download finished checks straight from the app | — |
-| **1.8.0 – 1.8.1** | 5–6 Nov 2026 | Installer with a desktop icon | — |
-| **1.7.1 and earlier** | 28 Oct – 4 Nov 2026 | Fourteen releases, from the first version to the Upload button | — |
-
-<sub>**Kept** means the presets you saved stay when you install the newer version. **—** means the version had no presets yet.</sub>
+| Version | Released | Headline |
+| :--- | :--- | :--- |
+| **3.0.0** | 19 Nov 2026 | New Wiecon look; files are kept and listed as you add them |
+| **2.0.7** | 16 Nov 2026 | Uploads leave the list once their result is in the Outbox |
+| **2.0.6** | 13 Nov 2026 | The Uploads list opens by itself after an upload |
+| **2.0.5** | 13 Nov 2026 | New Uploads list in the top bar |
+| **2.0.3** | 12 Nov 2026 | PDFs up to 300 MB each |
+| **2.0.2** | 12 Nov 2026 | Project name on every submission, saved inside the zip |
+| **2.0.0** | 11 Nov 2026 | Reports can be sent without supporting documents; presets can be edited |
+| **1.10.2** | 10 Nov 2026 | Presets for frequently used codes |
+| **1.10.0 – 1.10.1** | 9 Nov 2026 | Uploads and downloads over FTP, so every office can use it |
+| **1.9.0** | 6 Nov 2026 | Download finished checks straight from the app |
+| **1.8.0 – 1.8.1** | 5–6 Nov 2026 | Installer with a desktop icon |
+| **1.7.1 and earlier** | 28 Oct – 4 Nov 2026 | Fourteen releases, from the first version to the Upload button |
 
 <details>
 <summary><b>Full release notes</b>: open for every version's details</summary>
