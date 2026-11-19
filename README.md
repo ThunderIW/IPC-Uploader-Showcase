@@ -16,26 +16,23 @@
 
 </div>
 
-> [!CAUTION]
-> ### Proprietary software. Not open source.
->
-> **Copyright © 2026 Immanuel Wiessler and Wiecon Consultants Taiwan. All rights reserved.**
->
-> You may not use, copy, modify or distribute this software without written permission. To ask for permission, email **[im.wiessler@gmail.com](mailto:im.wiessler@gmail.com)**.
->
-> Full terms: [Copyright and license](#11-copyright-and-license) · [LICENSE](LICENSE)
-
 > [!NOTE]
 > **This is a showcase repository.** It holds the README, screenshots and the promo video so you can see what the program does. The source code and the installers are private.
 
 <br>
 
+## About this project
+
+Designed, built and released by **Immanuel Wiessler** for Wiecon Consultants Taiwan, a structural engineering consultancy. It is an internal tool in daily use by the firm's engineers: the first version shipped on 28 October 2026, and it reached 3.0.0 three weeks later after 27 releases, each one shaped by what the engineers using it ran into.
+
+<!-- TODO: your role at Wiecon, and whether you also built the AI proof-check agent or only the uploader. -->
+
 <div align="center">
 
 <table>
-<tr><td><b>Input</b></td><td>Calculation report PDFs, the design-code documents to check against, and optional supporting documents</td><td>entered by the engineer in one form</td></tr>
-<tr><td><b>Output</b></td><td>One zip per submission in the IPC Inbox for that design code</td><td>finished checks come back from the Outbox</td></tr>
-<tr><td><b>Stack</b></td><td><a href="https://nicegui.io/">NiceGUI</a>, <a href="https://fastapi.tiangolo.com/">FastAPI</a>, <a href="https://sqlmodel.tiangolo.com/">SQLModel</a>, <a href="https://filesystem-spec.readthedocs.io/">fsspec</a> over FTP</td><td><a href="https://www.python.org/">Python</a> 3.14, run and packaged with <a href="https://docs.astral.sh/uv/">uv</a></td></tr>
+<tr><td><b>Problem</b></td><td>Every proof check had to be zipped, named and filed on the server by hand</td><td>slow, and easy to get wrong</td></tr>
+<tr><td><b>Solution</b></td><td>One form that packages the reports and codes for the AI agent and shows the finished checks</td><td>plus an office-screen queue dashboard</td></tr>
+<tr><td><b>Stack</b></td><td><a href="https://nicegui.io/">NiceGUI</a>, <a href="https://fastapi.tiangolo.com/">FastAPI</a>, <a href="https://sqlmodel.tiangolo.com/">SQLModel</a> on PostgreSQL and SQLite, <a href="https://filesystem-spec.readthedocs.io/">fsspec</a> over FTP</td><td><a href="https://www.python.org/">Python</a> 3.14 with <a href="https://docs.astral.sh/uv/">uv</a>, Docker, GitHub Actions, NSIS</td></tr>
 <tr><td><b>Platform</b></td><td>Windows PCs across the firm's offices</td><td>runs locally, opens in the browser</td></tr>
 </table>
 
@@ -46,16 +43,15 @@
 | # | Section | What's in it |
 | :---: | --- | --- |
 | 01 | [Why this exists](#01-why-this-exists) | The hand-made zips and folder rules this replaces |
-| 02 | [Testimonials](#02-testimonials) | What the engineers using it say |
-| 03 | [Features](#03-features) | The eight things the program gives you |
-| 04 | [Screenshots](#04-screenshots) | The form, the Uploads list and the Outbox |
-| 05 | [Queue dashboard](#05-queue-dashboard) | The office screen that shows who is in line |
-| 06 | [Architecture](#06-architecture) | Front end, file layer, back end, dashboard and release, and where to start reading |
-| 07 | [Example workflow (sending a report for checking)](#07-example-workflow-sending-a-report-for-checking) | A complete run on invented data, from the form to the downloaded result |
-| 08 | [What it doesn't do](#08-what-it-doesnt-do) | Scope limits, stated plainly |
-| 09 | [Known issues](#09-known-issues) | Two behaviours worth knowing before relying on it |
-| 10 | [Changelog](#10-changelog) | Every released version, newest first, and what changed in each |
-| 11 | [Copyright and license](#11-copyright-and-license) | Proprietary software: what you may and may not do with this code |
+| 02 | [Features](#02-features) | The eight things the program gives you |
+| 03 | [Screenshots](#03-screenshots) | The form, the Uploads list and the Outbox |
+| 04 | [Queue dashboard](#04-queue-dashboard) | The office screen that shows who is in line |
+| 05 | [Architecture](#05-architecture) | Front end, file layer, back end, dashboard, CI and release |
+| 06 | [Design decisions and lessons](#06-design-decisions-and-lessons) | What went wrong in real use, and how the design changed because of it |
+| 07 | [Example workflow](#07-example-workflow) | A complete run on invented data, from the form to the downloaded result |
+| 08 | [Scope and known issues](#08-scope-and-known-issues) | What it doesn't do, and two behaviours worth knowing |
+| 09 | [Release history](#09-release-history) | 27 releases in three weeks, newest first |
+| 10 | [Copyright and license](#10-copyright-and-license) | Proprietary software |
 
 <br>
 
@@ -77,6 +73,7 @@ Without the uploader, an engineer had to do that by hand for every check:
 The IPC Uploader turns that into a single form. The engineer fills it in, clicks **Upload**, and the package lands in the right place in the right shape. When the check is done, the result shows up in the same app.
 
 <!-- TODO before/after: how long assembling and filing one check took by hand vs with the app, and how many checks have gone through since 28 October 2026. Real figures only. -->
+<!-- TODO testimonial: a short quote from an engineer who uses the app, with their role, used with their permission. -->
 
 ```mermaid
 flowchart LR
@@ -89,16 +86,7 @@ flowchart LR
 
 ---
 
-## 02. Testimonials
-
-![From the engineers using it](https://img.shields.io/badge/from-the_engineers_using_it-16235c?style=flat-square)
-
-<!-- TODO: a short quote from an engineer who uses the app, with their role, used with their permission. -->
-
----
-
-## 03. Features
-The program has a set of features, which include the following:
+## 02. Features
 
 **1.** ![One form, one upload](https://img.shields.io/badge/One%20form%2C%20one%20upload-b45309?style=flat-square)<br>
 Engineer name, project name, design code (for example IRC) and code documents, report PDFs and optional supporting documents, all on one page. Missing fields are marked in red when you click **Upload**, and the files you added are never thrown away.
@@ -126,7 +114,7 @@ Engineers install it with one `Setup.exe` from the office share: no admin rights
 
 ---
 
-## 04. Screenshots
+## 03. Screenshots
 
 ![The app at work](https://img.shields.io/badge/the_app_at_work-16235c?style=flat-square)
 
@@ -150,7 +138,7 @@ Engineers install it with one `Setup.exe` from the office share: no admin rights
 
 ---
 
-## 05. Queue dashboard
+## 04. Queue dashboard
 
 ![On the office screen](https://img.shields.io/badge/on_the_office_screen-16235c?style=flat-square) ![Live from the API](https://img.shields.io/badge/live_from-the_IPC_Uploader_API-009688?style=flat-square)
 
@@ -190,11 +178,11 @@ A real upload leaves the line when its result is in the Outbox, not after a set 
 
 ---
 
-## 06. Architecture
+## 05. Architecture
 
-![NiceGUI](https://img.shields.io/badge/front_end-NiceGUI-2f6fd0?style=flat-square) ![fsspec](https://img.shields.io/badge/files-fsspec_over_FTP-0f766e?style=flat-square) ![FastAPI](https://img.shields.io/badge/back_end-FastAPI-009688?style=flat-square) ![SQLModel](https://img.shields.io/badge/ORM-SQLModel-16235c?style=flat-square) ![NSIS](https://img.shields.io/badge/installer-NSIS-b45309?style=flat-square)
+![NiceGUI](https://img.shields.io/badge/front_end-NiceGUI-2f6fd0?style=flat-square) ![fsspec](https://img.shields.io/badge/files-fsspec_over_FTP-0f766e?style=flat-square) ![FastAPI](https://img.shields.io/badge/back_end-FastAPI-009688?style=flat-square) ![SQLModel](https://img.shields.io/badge/ORM-SQLModel-16235c?style=flat-square) ![PostgreSQL](https://img.shields.io/badge/database-PostgreSQL-2f6fd0?style=flat-square) ![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-1f8a70?style=flat-square) ![NSIS](https://img.shields.io/badge/installer-NSIS-b45309?style=flat-square)
 
-A NiceGUI front end on the engineer's PC, a file layer that talks to the IPC server over FTP, and a FastAPI back end with a SQLModel database that the queue dashboard reads, on Python 3.14.
+A NiceGUI front end on the engineer's PC, a file layer that talks to the IPC server over FTP, and a FastAPI back end on PostgreSQL that the queue dashboard reads, on Python 3.14.
 
 ![An engineer's upload goes from the browser through IPC_uploader_frontend.py and code_finder.py into the IPC server's Inbox over FTP, with a record in presets.db and PostgreSQL; the finished check comes back from the Outbox for download, and the IPC Check Queue page reads the uploads from BackendAPI and PostgreSQL](docs/diagrams/architecture.svg)
 
@@ -214,27 +202,33 @@ NiceGUI 3.18. One page holds the whole app: the upload form, the presets, the Up
 
 ### Back end
 
-![FastAPI · SQLModel](https://img.shields.io/badge/FastAPI%20%C2%B7%20SQLModel-009688?style=flat-square)
+![FastAPI · SQLModel · PostgreSQL](https://img.shields.io/badge/FastAPI%20%C2%B7%20SQLModel%20%C2%B7%20PostgreSQL-009688?style=flat-square)
 
-A FastAPI service with a SQLModel database records the uploads and serves them to the queue dashboard. The app keeps its presets and its own Uploads list in a small SQLite database next to the program, which is why presets survive an update.
+A FastAPI service records the uploads in PostgreSQL (through SQLModel, run with Docker Compose) and serves them to the queue dashboard. The app keeps its presets and its own Uploads list in a small SQLite database next to the program, which is why presets survive an update.
 
 ### Queue dashboard
 
 ![One HTML page · polls the API](https://img.shields.io/badge/one%20HTML%20page%20%C2%B7%20polls%20the%20API-7c3aed?style=flat-square)
 
-One self-contained HTML page served by the back end and shown on an office screen. It polls the uploads list and animates the queue; see [05. Queue dashboard](#05-queue-dashboard).
+One self-contained HTML page served by the back end and shown on an office screen. It polls the uploads list and animates the queue; see [04. Queue dashboard](#04-queue-dashboard).
 
-### Release
+### CI and release
 
-![PowerShell · NSIS Setup.exe](https://img.shields.io/badge/PowerShell%20%C2%B7%20NSIS%20Setup.exe-b45309?style=flat-square)
+![GitHub Actions · PowerShell · NSIS Setup.exe](https://img.shields.io/badge/GitHub%20Actions%20%C2%B7%20PowerShell%20%C2%B7%20NSIS%20Setup.exe-b45309?style=flat-square)
 
-A PowerShell script builds each version with the launcher, settings and release notes, and an NSIS installer (`Setup.exe`) puts it on each engineer's PC: per user, no admin rights, with a desktop icon and an uninstaller. A motion-graphics video guide walks engineers through each step, and the promo was built with HyperFrames from screens of the app and the dashboard on invented data.
+Every pull request runs a GitHub Actions pipeline in three steps:
+
+1. **Version bump.** The version and release date are set from the PR's labels (major, minor or patch), and the commit goes back to the branch.
+2. **Lint.** Ruff lint and format checks, and a compile check.
+3. **Package check.** The release package is built and its contents are checked.
+
+A PowerShell script builds each version with the launcher, settings and release notes. An NSIS installer (`Setup.exe`) puts it on each engineer's PC: per user, no admin rights, with a desktop icon and an uninstaller, and tested with a silent install, update and uninstall before it ships. A motion-graphics video guide walks engineers through each step, and the promo was built with HyperFrames from screens of the app and the dashboard on invented data.
 
 ### Project layout
 
-![About 2,800 lines of Python · one HTML dashboard](https://img.shields.io/badge/about%202%2C800%20lines%20of%20Python%20%C2%B7%20one%20HTML%20dashboard-0f766e?style=flat-square)
+![About 2,800 lines of app code in Python · one HTML dashboard](https://img.shields.io/badge/about%202%2C800%20lines%20of%20app%20code%20in%20Python%20%C2%B7%20one%20HTML%20dashboard-0f766e?style=flat-square)
 
-About 2,800 lines of Python, more than half of it in the front end, plus the dashboard as one HTML page.
+About 2,800 lines of app code in Python, more than half of it in the front end, plus the dashboard as one HTML page.
 
 <table>
 <tr><th align="left">Module</th><th align="right">Lines</th><th align="left">Share of the code in the repo</th></tr>
@@ -258,9 +252,26 @@ Where to start reading, depending on what you are looking for:
 
 ---
 
-## 07. Example workflow (sending a report for checking)
+## 06. Design decisions and lessons
 
-![Invented data](https://img.shields.io/badge/data-invented-1f8a70?style=flat-square) ![Measured](https://img.shields.io/badge/screenshots-from_a_real_run-16235c?style=flat-square)
+![From real use](https://img.shields.io/badge/from-real_use-16235c?style=flat-square)
+
+Most of the design came from problems the engineers ran into. These are the changes that taught me the most:
+
+| Problem in real use | Decision | Why |
+| --- | --- | --- |
+| The app first ran straight from the network share, so everyone used one upload folder, and two engineers sending at the same time could mix their files (1.0.0). | Run on each engineer's PC, gather the files locally (1.1.0), and later install per user with a `Setup.exe` (1.8.1). | Each engineer gets their own folder, and a shared folder can no longer mix them. |
+| Some offices couldn't open the server's shared folder at all. | Move uploads and downloads to FTP with fsspec (1.10.0). | One way in that works from every office, behind the same file interface. |
+| A failed send left the form saying "Zipping" forever, and files could be lost. | Zip on the PC, send, then **check the zip arrived** before clearing the form (1.10.0). From 3.0.0 the files are kept on every failure. | An engineer should never have to wonder whether a check was sent. |
+| When the IPC server was down, the app switched to a second server, so reports could end up where the agent never looked. | Remove the fallback: say *"Could not reach the IPC server"* and close (2.0.4). | Failing loudly is safer than succeeding in the wrong place. |
+| Picking several design codes made the zip's name too long for Windows. | Keep the name short and list the codes in `Codes_to_check.md` inside the zip (1.10.1). | The name only needs to identify the upload; the agent reads the details from the file. |
+| Engineers couldn't tell where their upload was in the hourly queue. | A queue dashboard on an office screen, fed by a FastAPI back end. | It answers "when is mine done?" for the whole office without anyone asking. |
+
+---
+
+## 07. Example workflow
+
+![Invented data](https://img.shields.io/badge/data-invented-1f8a70?style=flat-square) ![Screenshots from a real run](https://img.shields.io/badge/screenshots-from_a_real_run-16235c?style=flat-square)
 
 This section walks through one upload on invented data, from the form to the downloaded result.
 
@@ -315,7 +326,9 @@ Within the hour the agent writes its check to the Outbox. The pill in the header
 
 ---
 
-## 08. What it doesn't do
+## 08. Scope and known issues
+
+### What it doesn't do
 
 | Not included | Status |
 | --- | --- |
@@ -324,25 +337,19 @@ Within the hour the agent writes its check to the Outbox. The pill in the header
 | A fallback server | Removed in 2.0.4: if the IPC server is unreachable, the app stops |
 | Working off the office network | Not supported: the app needs the Wiecon network to reach the IPC server |
 
----
+### Known issues
 
-## 09. Known issues
+**The Uploads list only shows uploads sent from this PC.** Each install keeps its own Uploads list next to the program. An engineer who sends from two PCs sees each upload only on the PC it was sent from. The queue dashboard shows everyone's uploads.
 
-### The Uploads list only shows uploads sent from this PC
-
-Each install keeps its own Uploads list next to the program. An engineer who sends from two PCs sees each upload only on the PC it was sent from. The queue dashboard shows everyone's uploads.
-
-### A finished check can take a few minutes to show
-
-The Outbox pill counts the results when the app opens and every 5 minutes after that. A result that arrives in between appears on the next count, not the moment it lands.
+**A finished check can take a few minutes to show.** The Outbox pill counts the results when the app opens and every 5 minutes after that. A result that arrives in between appears on the next count, not the moment it lands.
 
 ---
 
-## 10. Changelog
+## 09. Release history
 
 ![Latest 3.0.0](https://img.shields.io/badge/latest-3.0.0-16235c?style=flat-square) ![27 releases](https://img.shields.io/badge/releases-27-2f6fd0?style=flat-square) ![First release](https://img.shields.io/badge/first_release-28_Oct_2026-0f766e?style=flat-square)
 
-Every released version, newest first. The table is the short version; open a release below for the details.
+27 releases between 28 October and 19 November 2026, most of them answering something an engineer ran into the day before.
 
 | Version | Released | Headline | Your presets |
 | :--- | :--- | :--- | :--- |
@@ -361,7 +368,12 @@ Every released version, newest first. The table is the short version; open a rel
 
 <sub>**Kept** means the presets you saved stay when you install the newer version. **—** means the version had no presets yet.</sub>
 
-<details open>
+<details>
+<summary><b>Full release notes</b>: open for every version's details</summary>
+
+<br>
+
+<details>
 <summary><b>3.0.0</b> &nbsp;·&nbsp; 19 November 2026 &nbsp;·&nbsp; <i>new Wiecon look; files are kept and listed as you add them</i></summary>
 
 <br>
@@ -521,30 +533,16 @@ Every released version, newest first. The table is the short version; open a rel
 
 </details>
 
+</details>
+
 <br>
 
-## 11. Copyright and license
+## 10. Copyright and license
 
-> [!IMPORTANT]
-> **Proprietary and confidential. This is not open-source software.**
+![Proprietary](https://img.shields.io/badge/license-proprietary-64748b?style=flat-square)
 
 Copyright © 2026 Immanuel Wiessler and Wiecon Consultants Taiwan. All rights reserved.
 
-This repository and everything in it, including the source code, installers, documentation, images and video guide, is the confidential property of the copyright holders. No licence of any kind is granted by publishing this repository, sharing it, or giving anyone access to it.
+This is proprietary software, not open source. The code is shared here so that it can be read and reviewed; it may not be copied, modified, distributed or used elsewhere without written permission. The full terms are in the [LICENSE](LICENSE) file.
 
-Without prior written permission from the copyright holders, you may not:
-
-- copy, download, clone or fork the source code;
-- modify, adapt, translate or create derivative works from any part of it;
-- distribute, publish, sublicense, sell or otherwise make it available to anyone else;
-- use the software or its installers in any organisation other than Wiecon Consultants Taiwan;
-- reverse engineer, decompile or disassemble any built form of it.
-
-Access to this repository is given only so that authorised people can view and work on it for Wiecon Consultants Taiwan. Any other use is unauthorised and may lead to legal action.
-
-> [!IMPORTANT]
-> **Want to use this software?** You must contact Immanuel Wiessler and get his written permission first.
->
-> Email: [im.wiessler@gmail.com](mailto:im.wiessler@gmail.com) · GitHub: [@ThunderIW](https://github.com/ThunderIW)
-
-The full terms are in the [LICENSE](LICENSE) file.
+For permission or questions: [im.wiessler@gmail.com](mailto:im.wiessler@gmail.com) · GitHub [@ThunderIW](https://github.com/ThunderIW)
