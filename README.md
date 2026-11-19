@@ -1,12 +1,7 @@
 <div align="center">
 
 
-<img src="Media/Logos/Wiecon_logo-removebg-preview.png" alt="Wiecon logo" width="160">
-
-# IPC Uploader
-
-
-**One form that sends calculation reports to Wiecon's hourly AI proof-check agent, and brings the finished checks back.**
+<img src="docs/readme/hero.svg" width="100%" alt="IPC Uploader: one form that packages calculation reports for Wiecon's hourly AI proof check and brings the finished checks back. Beside it, the zip the agent receives and its path from the Inbox through the AI check to the Outbox.">
 
 ![Version 3.0.0](https://img.shields.io/badge/version-3.0.0-16235c?style=for-the-badge) ![Python 3.14](https://img.shields.io/badge/python-3.14-2f6fd0?style=for-the-badge&logo=python&logoColor=white) ![NiceGUI 3.18](https://img.shields.io/badge/NiceGUI-3.18-1f8a70?style=for-the-badge) ![uv](https://img.shields.io/badge/uv-packaged-b45309?style=for-the-badge)
 
@@ -23,15 +18,16 @@
 
 ## About this project
 
-Designed, built and released by **Immanuel Wiessler** for Wiecon Consultants Taiwan, a structural engineering consultancy. It is an internal tool in daily use by the firm's engineers: the first version shipped on 28 October 2026, and it reached 3.0.0 three weeks later after 27 releases, each one shaped by what the engineers using it ran into.
+I'm **Immanuel Wiessler**, and I work in software and automation at Wiecon Consultants Taiwan, a structural engineering consultancy with an office of 17 engineering and CAD staff.
 
-<!-- TODO: your role at Wiecon, and whether you also built the AI proof-check agent or only the uploader. -->
+- **The AI proof-check workflow.** I worked with the engineers to create it, and I was in charge of the agent's prompting and context design: what it reads, and how it is told to check a report against the codes.
+- **The IPC Uploader and the queue dashboard.** I designed, built and released both. The first version shipped on 28 October 2026, and it reached 3.0.0 three weeks later after 27 releases, each one shaped by what the engineers using it ran into.
 
 <div align="center">
 
 <table>
-<tr><td><b>Problem</b></td><td>Every proof check had to be zipped, named and filed on the server by hand</td><td>slow, and easy to get wrong</td></tr>
-<tr><td><b>Solution</b></td><td>One form that packages the reports and codes for the AI agent and shows the finished checks</td><td>plus an office-screen queue dashboard</td></tr>
+<tr><td><b>Problem</b></td><td>Engineers proof-checked every calculation report by hand, redoing the calculations and comparing them with the design codes</td><td>slow, repetitive work</td></tr>
+<tr><td><b>Solution</b></td><td>An AI agent makes a first pass every hour; one form packages the reports for it and brings the finished checks back</td><td>plus an office-screen queue dashboard</td></tr>
 <tr><td><b>Stack</b></td><td><a href="https://nicegui.io/">NiceGUI</a>, <a href="https://fastapi.tiangolo.com/">FastAPI</a>, <a href="https://sqlmodel.tiangolo.com/">SQLModel</a> on PostgreSQL and SQLite, <a href="https://filesystem-spec.readthedocs.io/">fsspec</a> over FTP</td><td><a href="https://www.python.org/">Python</a> 3.14 with <a href="https://docs.astral.sh/uv/">uv</a>, Docker, GitHub Actions, NSIS</td></tr>
 <tr><td><b>Platform</b></td><td>Windows PCs across the firm's offices</td><td>runs locally, opens in the browser</td></tr>
 </table>
@@ -42,7 +38,7 @@ Designed, built and released by **Immanuel Wiessler** for Wiecon Consultants Tai
 
 | # | Section | What's in it |
 | :---: | --- | --- |
-| 01 | [Why this exists](#01-why-this-exists) | The hand-made zips and folder rules this replaces |
+| 01 | [Why this exists](#01-why-this-exists) | Proof checks done by hand, and what replaced them |
 | 02 | [Features](#02-features) | The eight things the program gives you |
 | 03 | [Screenshots](#03-screenshots) | The form, the Uploads list and the Outbox |
 | 04 | [Queue dashboard](#04-queue-dashboard) | The office screen that shows who is in line |
@@ -59,21 +55,13 @@ Designed, built and released by **Immanuel Wiessler** for Wiecon Consultants Tai
 
 ## 01. Why this exists
 
-![Before](https://img.shields.io/badge/before-hand--made_zips_and_folder_rules-64748b?style=flat-square) ![Now](https://img.shields.io/badge/now-one_form-16235c?style=flat-square)
+![Before](https://img.shields.io/badge/before-checked_by_hand_against_the_codes-64748b?style=flat-square) ![Now](https://img.shields.io/badge/now-AI_first_pass_every_hour-16235c?style=flat-square)
 
-Wiecon runs an AI agent every hour that works through a queue of calculation reports and writes up an Independent Proof Check (IPC) for the checking engineers. The agent reads its work from an Inbox on the IPC server, and every submission has to arrive as one complete package: the reports, the code documents to check them against, any supporting documents, and the project they belong to.
+An Independent Proof Check (IPC) confirms that a structural design is right before it goes out. At Wiecon it used to be done entirely by hand: an engineer worked through each calculation report, redid the calculations and compared them with the design codes.
 
-Without the uploader, an engineer had to do that by hand for every check:
+Wiecon now runs an AI agent every hour that makes a first pass of that check and writes up an IPC for the checking engineers to review. I worked with the engineers to create that workflow and was in charge of the agent's prompting and context design.
 
-1. Collect the reports, the right design-code documents and the drawings into one folder.
-2. Zip it and name the zip by the Inbox naming rule.
-3. Copy it into the Inbox folder for the right design code on the server.
-4. Look in the Outbox from time to time to see whether the check was back.
-
-The IPC Uploader turns that into a single form. The engineer fills it in, clicks **Upload**, and the package lands in the right place in the right shape. When the check is done, the result shows up in the same app.
-
-<!-- TODO before/after: how long assembling and filing one check took by hand vs with the app, and how many checks have gone through since 28 October 2026. Real figures only. -->
-<!-- TODO testimonial: a short quote from an engineer who uses the app, with their role, used with their permission. -->
+The agent needs each submission as one complete package in the Inbox folder for its design code: the reports, the code documents to check them against, any supporting documents, and the project they belong to. The IPC Uploader is how the reports get there. The engineer fills in one form, clicks **Upload**, and the package lands in the right place in the right shape. When the check is done, the result shows up in the same app.
 
 ```mermaid
 flowchart LR
