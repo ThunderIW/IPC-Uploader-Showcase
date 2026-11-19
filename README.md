@@ -16,12 +16,9 @@
 
 ## About this project
 
-I'm **Immanuel Wiessler**, and I work in software and automation at Wiecon Consultants Taiwan, a structural engineering consultancy with an office of 17 engineering and CAD staff.
+An internal tool for Wiecon Consultants Taiwan, a structural engineering consultancy with an office of 17 engineering and CAD staff. The first version shipped on 28 October 2026, and it reached 3.0.0 three weeks later after 27 releases, each one shaped by what the engineers using it ran into.
 
-- **The AI proof-check workflow.** I worked with the engineers to create it, and I was in charge of the agent's prompting and context design: what it reads, and how it is told to check a report against the codes.
-- **The IPC Uploader and the queue dashboard.** I designed, built and released both. The first version shipped on 28 October 2026, and it reached 3.0.0 three weeks later after 27 releases, each one shaped by what the engineers using it ran into.
-
-More of my work is on my GitHub profile: [**@ThunderIW**](https://github.com/ThunderIW).
+Built by [**@ThunderIW**](https://github.com/ThunderIW).
 
 <div align="center">
 
@@ -59,7 +56,7 @@ More of my work is on my GitHub profile: [**@ThunderIW**](https://github.com/Thu
 
 An Independent Proof Check (IPC) confirms that a structural design is right before it goes out. At Wiecon it used to be done entirely by hand: an engineer worked through each calculation report, redid the calculations and compared them with the design codes.
 
-Wiecon now runs an AI agent every hour that makes a first pass of that check and writes up an IPC for the checking engineers to review. I worked with the engineers to create that workflow and was in charge of the agent's prompting and context design.
+Wiecon now runs an AI agent every hour that makes a first pass of that check and writes up an IPC for the checking engineers to review.
 
 The agent needs each submission as one complete package in the Inbox folder for its design code: the reports, the code documents to check them against, any supporting documents, and the project they belong to. The IPC Uploader is how the reports get there. The engineer fills in one form, clicks **Upload**, and the package lands in the right place in the right shape. When the check is done, the result shows up in the same app.
 
@@ -244,7 +241,7 @@ Where to start reading, depending on what you are looking for:
 
 ![From real use](https://img.shields.io/badge/from-real_use-16235c?style=flat-square)
 
-Most of the design came from problems the engineers ran into. These are the changes that taught me the most:
+Most of the design came from problems the engineers ran into. These are the changes that shaped it most:
 
 | Problem in real use | Decision | Why |
 | --- | --- | --- |
