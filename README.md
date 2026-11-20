@@ -43,7 +43,7 @@ Built by [**@ThunderIW**](https://github.com/ThunderIW).
 | 06 | [Design decisions and lessons](#06-design-decisions-and-lessons) | What went wrong in real use, and how the design changed because of it |
 | 07 | [Example workflow](#07-example-workflow) | A complete run on invented data, from the form to the downloaded result |
 | 08 | [Scope and known issues](#08-scope-and-known-issues) | What it doesn't do, and two behaviours worth knowing |
-| 09 | [Release history](#09-release-history) | 27 releases in three weeks, newest first |
+| 09 | [Milestones](#09-milestones) | How the program has grown |
 | 10 | [Copyright and license](#10-copyright-and-license) | Proprietary software |
 
 <br>
@@ -330,193 +330,19 @@ Within the hour the agent writes its check to the Outbox. The pill in the header
 
 ---
 
-## 09. Release history
+## 09. Milestones
 
-![Latest 3.0.0](https://img.shields.io/badge/latest-3.0.0-16235c?style=flat-square) ![27 releases](https://img.shields.io/badge/releases-27-2f6fd0?style=flat-square) ![First release](https://img.shields.io/badge/first_release-28_Oct_2026-0f766e?style=flat-square)
+![Latest 3.0.0](https://img.shields.io/badge/latest-3.0.0_·_Nov_2026-16235c?style=flat-square)
 
-27 releases between 28 October and 19 November 2026, most of them answering something an engineer ran into the day before.
+How the program has grown, in what it can do.
 
-| Version | Released | Headline |
-| :--- | :--- | :--- |
-| **3.0.0** | 19 Nov 2026 | New Wiecon look; files are kept and listed as you add them |
-| **2.0.7** | 16 Nov 2026 | Uploads leave the list once their result is in the Outbox |
-| **2.0.6** | 13 Nov 2026 | The Uploads list opens by itself after an upload |
-| **2.0.5** | 13 Nov 2026 | New Uploads list in the top bar |
-| **2.0.3** | 12 Nov 2026 | PDFs up to 300 MB each |
-| **2.0.2** | 12 Nov 2026 | Project name on every submission, saved inside the zip |
-| **2.0.0** | 11 Nov 2026 | Reports can be sent without supporting documents; presets can be edited |
-| **1.10.2** | 10 Nov 2026 | Presets for frequently used codes |
-| **1.10.0 – 1.10.1** | 9 Nov 2026 | Uploads and downloads over FTP, so every office can use it |
-| **1.9.0** | 6 Nov 2026 | Download finished checks straight from the app |
-| **1.8.0 – 1.8.1** | 5–6 Nov 2026 | Installer with a desktop icon |
-| **1.7.1 and earlier** | 28 Oct – 4 Nov 2026 | Fourteen releases, from the first version to the Upload button |
-
-<details>
-<summary><b>Full release notes</b>: open for every version's details</summary>
-
-<br>
-
-<details>
-<summary><b>3.0.0</b> &nbsp;·&nbsp; 19 November 2026 &nbsp;·&nbsp; <i>new Wiecon look; files are kept and listed as you add them</i></summary>
-
-<br>
-
-![New look](https://img.shields.io/badge/feature-new_Wiecon_look-2f6fd0?style=flat-square) ![Presets: kept](https://img.shields.io/badge/presets-kept-15803d?style=flat-square)
-
-![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square)
-- A new look in the Wiecon company colours: a blue page, a navy top bar and a white upload form.
-- Each upload box has a **Drop PDFs here** bar with a <kbd>Browse</kbd> button. The files you add are listed under the box, each with its size and a button to remove it.
-
-![Changed](https://img.shields.io/badge/changed-b45309?style=flat-square)
-- The **Upload** button is grey until at least one IPC report is added, and stays at the bottom of the window while you scroll.
-- The preset windows are only as tall as they need to be, and <kbd>Esc</kbd> closes them.
-- Fewer pop-ups: the Uploads button shows its own count, and the message every 5 minutes about refreshing the Outbox is gone.
-- In a narrow window the top bar fits on one line and the name boxes sit under each other.
-
-![Fixed](https://img.shields.io/badge/fixed-0f766e?style=flat-square)
-- Files are no longer lost: if a name, the project or a code is missing when you click Upload, the app marks the missing field and keeps your files. If an upload fails, it says so and keeps your files, so you can try again.
-
-<div align="center">
-<img src="docs/screenshots/01_upload_form.jpg" alt="The 3.0.0 upload form with two reports and a drawing listed under their boxes" width="620">
-<br><sub>The new form: each file listed under its box, Upload pinned to the bottom.</sub>
-</div>
-
-</details>
-
-<details>
-<summary><b>2.0.7</b> &nbsp;·&nbsp; 16 November 2026 &nbsp;·&nbsp; <i>uploads leave the list once their result is in the Outbox</i></summary>
-
-<br>
-
-![Fix](https://img.shields.io/badge/fix-Uploads_list-dc2626?style=flat-square) ![Presets: kept](https://img.shields.io/badge/presets-kept-15803d?style=flat-square)
-
-![Fixed](https://img.shields.io/badge/fixed-0f766e?style=flat-square)
-- An upload leaves the Uploads list once its result is in the Outbox. Before, finished checks stayed on the list.
-
-![Changed](https://img.shields.io/badge/changed-b45309?style=flat-square)
-- The IPC server login is kept in its own file that ships with the program, so it can be changed without changing the program. Nothing changes for engineers: the app connects by itself.
-
-</details>
-
-<details>
-<summary><b>2.0.5 – 2.0.6</b> &nbsp;·&nbsp; 13 November 2026 &nbsp;·&nbsp; <i>new Uploads list in the top bar</i></summary>
-
-<br>
-
-![Uploads list](https://img.shields.io/badge/feature-Uploads_list-16235c?style=flat-square) ![Presets: kept](https://img.shields.io/badge/presets-kept-15803d?style=flat-square)
-
-![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square)
-- An **Uploads** button in the top bar, next to the gear, lists the uploads you sent that are still being checked, each with an hourglass. *"No uploads in progress"* means all your checks are back.
-- After you click Upload, the Uploads list opens by itself and shows your new upload (2.0.6).
-
-![Changed](https://img.shields.io/badge/changed-b45309?style=flat-square)
-- The app uses the IPC server only. It no longer switches to a second server when the IPC server can't be reached; it says *"Could not reach the IPC server"* and closes.
-
-<div align="center">
-<img src="docs/screenshots/02_uploads_list.jpg" alt="The Uploads menu listing four uploads still being checked" width="620">
-<br><sub>The Uploads list, as it looks in 3.0.0.</sub>
-</div>
-
-</details>
-
-<details>
-<summary><b>2.0.2 – 2.0.3</b> &nbsp;·&nbsp; 12 November 2026 &nbsp;·&nbsp; <i>project name on every submission; bigger files</i></summary>
-
-<br>
-
-![Project name](https://img.shields.io/badge/feature-project_name-b45309?style=flat-square) ![Presets: kept](https://img.shields.io/badge/presets-kept-15803d?style=flat-square)
-
-![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square)
-- A **Project name** box under Engineer name. The project name is part of the zip's name and is saved in `Project.txt` inside the zip, so the check knows which project the reports belong to.
-- A green dot blinks next to the Outbox pill when a new check arrives (from 2.0.1).
-
-![Changed](https://img.shields.io/badge/changed-b45309?style=flat-square)
-- Bigger files: up to 300 MB per PDF (was 100 MB), and up to 300 MB in total in each upload box (2.0.3).
-
-</details>
-
-<details>
-<summary><b>2.0.0</b> &nbsp;·&nbsp; 11 November 2026 &nbsp;·&nbsp; <i>reports without supporting documents; presets can be edited</i></summary>
-
-<br>
-
-![Optional supporting documents](https://img.shields.io/badge/feature-optional_supporting_documents-7c3aed?style=flat-square) ![Presets: kept](https://img.shields.io/badge/presets-kept-15803d?style=flat-square)
-
-![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square)
-- IPC reports can be sent without supporting documents. Clicking Upload without them asks *"No supporting documents - Upload the reports without them?"*: **Upload** sends the reports, **No Upload** sends nothing and keeps the reports box ready for the missing documents.
-- Presets can be edited and deleted: <kbd>Settings</kbd> → <kbd>Open</kbd> next to *Edit or delete presets*. Changes are saved straight away.
-
-</details>
-
-<details>
-<summary><b>1.10.0 – 1.10.2</b> &nbsp;·&nbsp; 9–10 November 2026 &nbsp;·&nbsp; <i>FTP for every office, and presets</i></summary>
-
-<br>
-
-![FTP](https://img.shields.io/badge/feature-FTP_and_presets-2f6fd0?style=flat-square)
-
-![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square)
-- The app connects to the IPC server over FTP, so it also works from offices where the server's shared folder can't be opened (1.10.0).
-- Files are zipped on the PC first and then sent; the app checks the zip arrived before it clears your files (1.10.0).
-- **Presets**: save the codes you use most and load them with one click. Codes no longer on the server are left out, and the app says so (1.10.2).
-
-![Fixed](https://img.shields.io/badge/fixed-0f766e?style=flat-square)
-- If sending fails, the app says *"Upload failed"* with the reason and keeps your files, instead of showing "Zipping" forever (1.10.0).
-- Picking several additional codes made the zip's name too long for Windows. The name is short now, and the codes are listed in `Codes_to_check.md` inside the zip (1.10.1).
-
-</details>
-
-<details>
-<summary><b>1.9.0</b> &nbsp;·&nbsp; 6 November 2026 &nbsp;·&nbsp; <i>download finished checks straight from the app</i></summary>
-
-<br>
-
-![Downloads](https://img.shields.io/badge/feature-download_results-1f8a70?style=flat-square)
-
-![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square)
-- Point at (or click) the *IPC checks completed in outbox* pill: a list of the result zips opens, each with a download button. The zip is saved to the browser's Downloads folder.
-
-<div align="center">
-<img src="docs/screenshots/03_outbox_downloads.jpg" alt="The Outbox pill open, listing three finished checks with download buttons" width="620">
-<br><sub>The Outbox list, as it looks in 3.0.0.</sub>
-</div>
-
-</details>
-
-<details>
-<summary><b>1.8.0 – 1.8.1</b> &nbsp;·&nbsp; 5–6 November 2026 &nbsp;·&nbsp; <i>installer with a desktop icon</i></summary>
-
-<br>
-
-![Installer](https://img.shields.io/badge/feature-Setup.exe-b45309?style=flat-square)
-
-![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square)
-- Install with `IPC Uploader Setup.exe` from the office share: an IPC Uploader icon on the desktop and in the Start menu, no administrator rights needed (1.8.1).
-- The top bar shows which server the app is using (1.8.0).
-
-![Fixed](https://img.shields.io/badge/fixed-0f766e?style=flat-square)
-- Reloading the page always starts with an empty form, so files added before a reload can no longer end up in the next upload (1.8.1).
-
-</details>
-
-<details>
-<summary><b>1.7.1 and earlier</b> &nbsp;·&nbsp; 28 October – 4 November 2026 &nbsp;·&nbsp; <i>fourteen releases</i></summary>
-
-<br>
-
-| Version | Date | What changed |
-| :--- | :--- | :--- |
-| **1.7.0 – 1.7.1** | 4 Nov 2026 | ![Changed](https://img.shields.io/badge/changed-b45309?style=flat-square) Adding files no longer sends them straight away: add the reports and supporting documents, then press the green **Upload** button. Both boxes take PDFs only, each on its own card. Hover over the Outbox pill to see when it was last refreshed and which results are there. |
-| **1.6.0 – 1.6.4** | 3 Nov 2026 | ![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square) The Outbox count in the title bar, refreshed every 5 minutes, with a green tick or a red warning. The Inbox and Outbox folders were renamed `01 - Inbox` and `02 - Outbox`. ![Fixed](https://img.shields.io/badge/fixed-0f766e?style=flat-square) A failed zip says so instead of spinning, and the page no longer freezes while zipping. |
-| **1.5.0 – 1.5.1** | 2–3 Nov 2026 | ![Changed](https://img.shields.io/badge/changed-b45309?style=flat-square) A bridge-type field (removed again in 1.6.0), clear buttons on the code fields, and a "Released" date badge. |
-| **1.4.0** | 2 Nov 2026 | ![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square) The app opens in the browser from one `.bat` file; the first start sets everything up by itself. |
-| **1.3.0** | 30 Oct 2026 | ![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square) Settings (gear) with an auto-refresh switch for the Outbox; the form opens straight away. |
-| **1.1.0 – 1.2.0** | 29 Oct 2026 | ![New](https://img.shields.io/badge/new-2f6fd0?style=flat-square) Runs from each PC instead of the share. Several additional codes at once, and files gathered on the PC so two engineers sending at the same time can't mix their files. |
-| **1.0.0** | 28 Oct 2026 | The first release, run directly from the network share. |
-
-</details>
-
-</details>
+| Milestone | What it brought |
+| :--- | :--- |
+| **Installer with a desktop icon** | Set up like any other program, nothing to configure by hand |
+| **Works from every office** | Uploads and downloads over FTP, and finished checks downloaded straight from the app |
+| **Less typing** | Presets for frequently used codes, and the project name saved with every submission |
+| **Uploads list and Outbox** | See what is waiting in line and pick up each result as soon as it is ready |
+| **Latest** | 3.0.0, November 2026: the new Wiecon look, and files kept and listed as you add them |
 
 <br>
 
