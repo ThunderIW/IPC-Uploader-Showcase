@@ -134,8 +134,9 @@ The page follows the uploads through these states:
 | **New upload** | A new figure walks in from the left and joins the back of the line. |
 | **Check starts** | When the checker is free, the one at the front runs to the **GOAL** flag, rides the lift down to the drafting table, and everyone behind moves up a place. |
 | **Being checked** | The checker's monitor works through the report section by section (*§ 1/7 Loads*, *§ 2/7 Bending*) and the printer prints the checked pages. |
-| **Check done** | When the result is in the Outbox, the monitor says **CHECKED ✓**, the engineer walks off with the bundle of checked calculations and moves to the **Checked** list. |
-| **Nobody waiting** | *No one in line, waiting for new uploads.* The monitor reads **READY** and the check engineer dozes off. |
+| **Check done** | When the result is in the Outbox, the monitor says **CHECKED ✓**, the engineer collects the printed report and moves to the **Checked** list. |
+| **Final check** | The engineer hands the report to the check engineer at his own desk. He wakes up, reads it page by page with the report on his computer, now and then asks about a page (*"Hmm… this load?"*), stamps it and approves it with a green tick on his screen. The engineer walks off with the bundle of checked calculations. |
+| **Nobody waiting** | *No one in line, waiting for new uploads.* The monitor reads **READY** and the check engineer dozes off on his keyboard. |
 
 <div align="center">
 
@@ -147,6 +148,14 @@ The page follows the uploads through these states:
 <tr>
 <td align="center"><img src="docs/screenshots/07_dashboard_next_check.jpg" alt="Maya Patel at the checker's desk, the monitor processing her report" width="410"><br><sub><b>Next check</b>: Maya's report is being checked.</sub></td>
 <td align="center"><img src="docs/screenshots/08_dashboard_empty.jpg" alt="The empty queue: no one in line, the monitor reads READY" width="410"><br><sub><b>Nobody waiting</b>: the checker is ready.</sub></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td align="center"><img src="docs/screenshots/09_check_engineer_reading.jpg" alt="The check engineer reading a page of Sam Lee's report, the report's lines on his screen" width="270"><br><sub><b>Reading</b>: a page in hand, the report on his screen.</sub></td>
+<td align="center"><img src="docs/screenshots/10_check_engineer_question.jpg" alt="The check engineer asking Hmm, this load? with a question mark on his screen" width="270"><br><sub><b>A question</b>: "Hmm… this load?"</sub></td>
+<td align="center"><img src="docs/screenshots/11_check_engineer_approved.jpg" alt="The check engineer approving the report: a green tick on his screen, All checks OK" width="270"><br><sub><b>Approved</b>: a green tick on his screen.</sub></td>
 </tr>
 </table>
 
@@ -325,7 +334,7 @@ Within the hour the agent writes its check to the Outbox. The pill in the header
 
 ## 09. Milestones
 
-![Latest 3.0.0](https://img.shields.io/badge/latest-3.0.0_·_Nov_2026-16235c?style=flat-square)
+![Latest 3.0.2](https://img.shields.io/badge/latest-3.0.2_·_Nov_2026-16235c?style=flat-square)
 
 How the program has grown, in what it can do.
 
@@ -335,7 +344,8 @@ How the program has grown, in what it can do.
 | **Works from every office** | Uploads and downloads over FTP, and finished checks downloaded straight from the app |
 | **Less typing** | Presets for frequently used codes, and the project name saved with every submission |
 | **Uploads list and Outbox** | See what is waiting in line and pick up each result as soon as it is ready |
-| **Latest** | 3.0.0, November 2026: the new Wiecon look, and files kept and listed as you add them |
+| **New look** | 3.0.0, November 2026: the Wiecon colours, and files kept and listed as you add them |
+| **Latest** | 3.0.2, November 2026: every engineer's upload now appears on the queue dashboard, and finished checks leave the Uploads list without restarting the app |
 
 <br>
 
