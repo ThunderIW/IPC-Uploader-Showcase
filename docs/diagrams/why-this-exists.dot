@@ -1,0 +1,43 @@
+// Section 01 "Why this exists": how a submission reaches the hourly IPC agent and comes back.
+// Render: dot -Tsvg why-this-exists.dot -o why-this-exists.svg
+digraph WhyThisExists {
+    graph [rankdir=TB, bgcolor="transparent", pad="0.3", nodesep="0.55", ranksep="0.75",
+           fontname="Segoe UI, Helvetica, Arial, sans-serif", fontsize=13, fontcolor="#8b949e",
+           newrank=true];
+    node  [fontname="Segoe UI, Helvetica, Arial, sans-serif", fontsize=13, fontcolor="#ffffff",
+           style="filled", penwidth=0, margin="0.22,0.12"];
+    edge  [fontname="Segoe UI, Helvetica, Arial, sans-serif", fontsize=12, fontcolor="#8b949e",
+           color="#8b949e", penwidth=1.6, arrowsize=0.8];
+
+    subgraph cluster_pc {
+        label=<<b>ENGINEER'S PC</b>>; labeljust="l";
+        style="dashed,rounded"; color="#8b949e"; penwidth=1.2;
+
+        engineer [label=<<b>Engineer</b><br/><font point-size="11">fills in one form</font>>,
+                  shape=box, style="filled,rounded", fillcolor="#2f6fd0"];
+        uploader [label=<<b>IPC Uploader</b><br/><font point-size="11">zips the reports, shows results</font>>,
+                  shape=box, style="filled,rounded", fillcolor="#0f766e"];
+    }
+
+    subgraph cluster_server {
+        label=<<b>IPC SERVER</b>>; labeljust="l";
+        style="dashed,rounded"; color="#8b949e"; penwidth=1.2;
+
+        inbox  [label=<<b>01 - Inbox</b><br/><font point-size="11">one folder per design code</font>>,
+                shape=cylinder, fillcolor="#16235c"];
+        agent  [label=<<b>IPC proof-check agent</b><br/><font point-size="11">AI first pass, every hour</font>>,
+                shape=box, style="filled,rounded", fillcolor="#7c3aed"];
+        outbox [label=<<b>02 - Outbox</b><br/><font point-size="11">finished checks</font>>,
+                shape=cylinder, fillcolor="#16235c"];
+    }
+
+    { rank=same; engineer; uploader; }
+    { rank=same; inbox; agent; outbox; }
+
+    engineer -> uploader [label="  clicks Upload  "];
+    uploader -> inbox    [label="  one zip per submission  "];
+    inbox    -> agent    [label="  picks up  "];
+    agent    -> outbox   [label="  writes the IPC  "];
+    outbox   -> uploader [label="  results, ready to download  ", style=dashed,
+                          color="#1f8a70", fontcolor="#1f8a70"];
+}
