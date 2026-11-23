@@ -60,14 +60,7 @@ Wiecon now runs an AI agent every hour that makes a first pass of that check and
 
 The agent needs each submission as one complete package in the Inbox folder for its design code: the reports, the code documents to check them against, any supporting documents, and the project they belong to. The IPC Uploader is how the reports get there. The engineer fills in one form, clicks **Upload**, and the package lands in the right place in the right shape. When the check is done, the result shows up in the same app.
 
-```mermaid
-flowchart LR
-    A[Engineer] --> B[IPC Uploader<br/>on the engineer's PC]
-    B -- "one zip per submission" --> C[(IPC server<br/>01 - Inbox / design code)]
-    C --> D[IPC proof-check agent<br/>runs every hour]
-    D --> E[(IPC server<br/>02 - Outbox)]
-    E -- "finished checks" --> B
-```
+![On the engineer's PC, the engineer fills in one form and clicks Upload; the IPC Uploader sends one zip per submission to the IPC server's 01 - Inbox, one folder per design code. Every hour the IPC proof-check agent picks it up, makes an AI first pass and writes the IPC to 02 - Outbox, and the result comes back to the IPC Uploader, ready to download.](docs/diagrams/why-this-exists.svg)
 
 ---
 
