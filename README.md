@@ -3,7 +3,7 @@
 
 <img src="docs/readme/hero.svg" width="100%" alt="IPC Uploader: one form that packages calculation reports for Wiecon's hourly AI proof check and brings the finished checks back. Beside it, the zip the agent receives and its path from the Inbox through the AI check to the Outbox.">
 
-<a href="https://youtu.be/4Phy4q6Dfmw"><img src="docs/video/video_thumbnail_play.png" alt="Play the IPC Uploader promo video" width="840"></a>
+<a href="https://youtu.be/i6xWmCmtN3I"><img src="docs/video/video_thumbnail_play.png" alt="Play the IPC Uploader promo video" width="840"></a>
 
 <sub>A 48-second promo: one upload from form to finished check, and the queue dashboard on the office screen. Click the image to play.<br>Music: <i>Upbeat Energetic Corporate</i> by Fretbound (<a href="https://hypeddit.com/v8zrnu">download</a>).<br>Every engineer, project and file name in this README is invented.</sub>
 
